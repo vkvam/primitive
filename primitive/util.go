@@ -17,7 +17,11 @@ import (
 )
 
 func LoadImage(path string) (image.Image, error) {
-    return LoadImageStdIn()
+    if path == '-' {
+        return LoadImageStdIn()
+    } else{
+	   return LoadImageFile(path)
+   }
 }
 
 func LoadImageFile(path string) (image.Image, error):

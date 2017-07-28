@@ -5,7 +5,7 @@ import (
 	"image"
 	"strings"
 
-	"github.com/vkvam/gg"
+	"github.com/fogleman/gg"
 )
 
 type Model struct {

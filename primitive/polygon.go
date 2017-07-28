@@ -1,7 +1,7 @@
 package primitive
 
 import (
-	"github.com/vkvam/gg"
+	"github.com/fogleman/gg"
 	"github.com/golang/freetype/raster"
 )
 
