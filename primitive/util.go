@@ -17,14 +17,25 @@ import (
 )
 
 func LoadImage(path string) (image.Image, error) {
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-	im, _, err := image.Decode(file)
-	return im, err
+    if path == '-':
+        return LoadImageStdIn()
+    else:
+	   return LoadImageFile(path)
 }
+
+func LoadImageFile(path string) (image.Image, error):
+    file, err := os.Open(path)
+    if err != nil {
+        return nil, err
+    }
+    defer file.Close()
+    im, _, err := image.Decode(file)
+    return im, err
+
+func LoadImageStdIn() (image.Image, error):
+    bytes, err := ioutil.ReadAll(os.Stdin)
+    im, _, err := image.Decode(bytes)
+    return im, err
 
 func SaveFile(path, contents string) error {
 	file, err := os.Create(path)
