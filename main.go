@@ -6,7 +6,6 @@ import (
 	"log"
 	"math/rand"
 	"os"
-	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
@@ -29,6 +28,7 @@ var (
 	Nth        int
 	Repeat     int
 	V, VV      bool
+    Format     string
 )
 
 type flagArray []string
@@ -75,6 +75,7 @@ func init() {
 	flag.IntVar(&Repeat, "rep", 0, "add N extra shapes per iteration with reduced search")
 	flag.BoolVar(&V, "v", false, "verbose")
 	flag.BoolVar(&VV, "vv", false, "very verbose")
+    flag.StringVar(&Format, "f", "", "imageoutput format")
 }
 
 func errorMessage(message string) bool {
@@ -92,9 +93,14 @@ func main() {
 	// parse and validate arguments
 	flag.Parse()
 	ok := true
-	if Input == "" {
+    if Input == "" {
 		ok = errorMessage("ERROR: input argument required")
 	}
+
+    if Format == "" {
+        ok = errorMessage("ERROR: format argument required")
+    }
+
 	if len(Outputs) == 0 {
 		ok = errorMessage("ERROR: output argument required")
 	}
@@ -173,7 +179,8 @@ func main() {
 
 			// write output image(s)
 			for _, output := range Outputs {
-				ext := strings.ToLower(filepath.Ext(output))
+				//ext := strings.ToLower(filepath.Ext(output))
+                ext := Format
 				percent := strings.Contains(output, "%")
 				saveFrames := percent && ext != ".gif"
 				saveFrames = saveFrames && frame%Nth == 0
