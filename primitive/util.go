@@ -24,7 +24,7 @@ func LoadImage(path string) (image.Image, error) {
    }
 }
 
-func LoadImageFile(path string) (image.Image, error):
+func LoadImageFile(path string) (image.Image, error){
     file, err := os.Open(path)
     if err != nil {
         return nil, err
@@ -32,11 +32,13 @@ func LoadImageFile(path string) (image.Image, error):
     defer file.Close()
     im, _, err := image.Decode(file)
     return im, err
+}
 
-func LoadImageStdIn() (image.Image, error):
+func LoadImageStdIn() (image.Image, error){
     bytes, err := ioutil.ReadAll(os.Stdin)
     im, _, err := image.Decode(bytes)
     return im, err
+}
 
 func SaveFile(path, contents string) error {
 	file, err := os.Create(path)
