@@ -17,7 +17,7 @@ import (
 )
 
 func LoadImage(path string) (image.Image, error) {
-    if path == '-' {
+    if path == "-" {
         return LoadImageStdIn()
     } else{
 	   return LoadImageFile(path)
@@ -35,8 +35,7 @@ func LoadImageFile(path string) (image.Image, error){
 }
 
 func LoadImageStdIn() (image.Image, error){
-    bytes, err := ioutil.ReadAll(os.Stdin)
-    im, _, err := image.Decode(bytes)
+    im, _, err := image.Decode(os.Stdin)
     return im, err
 }
 
