@@ -1,6 +1,6 @@
 package primitive
 
-import "github.com/fogleman/gg"
+import "github.com/vkvam/gg"
 
 type Shape interface {
 	Rasterize() []Scanline

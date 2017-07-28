@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/fogleman/gg"
+	"github.com/vkvam/gg"
 )
 
 type Triangle struct {
