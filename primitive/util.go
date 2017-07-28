@@ -50,15 +50,16 @@ func SaveFile(path, contents string) error {
 }
 
 func SavePNG(path string, im image.Image) error {
-    if path == "-":
+    if path == "-"{
     	file, err := os.Create(path)
     	if err != nil {
     		return err
     	}
     	defer file.Close()
     	return png.Encode(file, im)
-    else:
+    } else{
         return png.Encode(os.Stdout, im)
+    }
 }
 
 func SaveJPG(path string, im image.Image, quality int) error {
